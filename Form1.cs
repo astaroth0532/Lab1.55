@@ -16,13 +16,9 @@ namespace Lab1._5
         {
             InitializeComponent();
         }
-        int N = 1; // Последнее проверяемое число
-        int x; //Число на которое будем делить
-
-
         private void TextBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) //захист від дурня
             {
                 e.Handled = true;
             }
@@ -30,24 +26,25 @@ namespace Lab1._5
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            for (int i = 1; i <= N; i++) //общий цикл
+            int x; //число, на яке будемо ділити
+            int N = Convert.ToInt32(textBox2.Text); //введена змінна
+            for (int i = 1; i <= N; i++) //загальний цикл
             {
-                for (x = 2; x < i; x++) //цикл на что делить 
+                for (x = 2; x < i; x++)  //цикл, на що ділити
                 {
-                    if (!(i % x)) //если нет остатка от деления
+                    if ((i % x) == 0) //якщо немає залишку від ділення
                     {
-                        x = i + 1; // Делаем "x" болше "i" чтоб выйти из цикла
+                        x = i + 1; // Робимо "x" більше "i" щоб вийти з циклу
                     }
                 }
-                if (x == i) // x будет равен i если цикл кончился сам
+                if (x == i)   // x дорівнюватиме i якщо цикл закінчився сам
                 {
-                    cout << i << endl; // Вывод в терминале
+                    label5.Text = i.ToString();     //вивід
                 }
             }
-            return 0;// Возврат main = 0 (0 - без ошибок)
         }
-
+        
     }
 }
-}
+
 
